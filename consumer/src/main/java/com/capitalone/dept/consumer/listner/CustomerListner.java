@@ -30,7 +30,8 @@ public class CustomerListner {
     public void listenToCustomerTopic(
     		@Header(name = KafkaHeaders.RECEIVED_PARTITION_ID) int partitionId,
     		@Header(name = KafkaHeaders.OFFSET) int offset,
-    		@Payload Customer customer, Acknowledgment acknowledgment) throws JsonProcessingException {
+    		@Payload Customer customer, 
+    		Acknowledgment acknowledgment) throws JsonProcessingException {
     	System.out.println("Partition Id " + partitionId);
     	System.out.println("offset " + offset);
     	System.out.println(mapper.writeValueAsString(customer));
