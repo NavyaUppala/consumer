@@ -1,0 +1,9 @@
+{"namespace": "com.capitalone.dept.demo.model",
+ "type": "record",
+ "name": "User",
+ "fields": [
+     {"name": "name", "type": "string"},
+     {"name": "favorite_number",  "type": "string"},
+     {"name": "favorite_color", "type": "string"}
+ ]
+}

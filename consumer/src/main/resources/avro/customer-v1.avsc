@@ -1,0 +1,147 @@
+{
+  "name": "Customer",
+  "type": "record",
+  "namespace": "com.capitalone.dept.demo.model",
+  "fields": [
+    {
+      "name": "customerId",
+      "type": [
+        "int",
+        "null"
+      ]
+    },
+    {
+      "name": "fname",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    {
+      "name": "lname",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    {
+      "name": "age",
+      "type": [
+        "int",
+        "null"
+      ]
+    },
+    {
+      "name": "accountOpenDate",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    {
+      "name": "acctBalance",
+      "type": [
+        "double",
+        "null"
+      ]
+    },
+    {
+      "name": "address",
+      "type": {
+        "name": "address",
+        "type": "record",
+        "fields": [
+          {
+            "name": "id",
+            "type": [
+              "long",
+              "null"
+            ]
+          },
+          {
+            "name": "stree1",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "apt",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "city",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "state",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "zipCode",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "country",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          {
+            "name": "street2",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "phones",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "phones_record",
+          "type": "record",
+          "fields": [
+            {
+              "name": "id",
+              "type": [
+                "long",
+                "null"
+              ]
+            },
+            {
+              "name": "type",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            {
+              "name": "phoneNumber",
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+kafka:
+   bootstrap-servers: 18.232.87.26:9092  
+   topic:
+      avro: 
+        customer: customer-topic 
+server:  port: 8081        
