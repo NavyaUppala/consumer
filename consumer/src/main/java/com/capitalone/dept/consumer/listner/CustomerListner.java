@@ -9,6 +9,9 @@ import org.apache.kafka.common.utils.Bytes;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import com.capitalone.dept.consumer.model.Customer;
@@ -20,10 +23,16 @@ import com.fasterxml.jackson.dataformat.avro.AvroSchema;
 @Component
 public class CustomerListner {
 	
-    @KafkaListener(topics = "${kafka.topic.avro.customer}", groupId = "cust", containerFactory = "custKafkaListenerContainerFactory")
-    public void listenToCustomerTopic(Bytes data, final Acknowledgment acknowledgment) throws JsonProcessingException {
-    	System.out.println(data);
-     //   System.out.println("Received Messasge: " + new ObjectMapper().writeValueAsString(deserialize(null, data)));
+    @KafkaListener(topics = "${kafka.topic.avro.customer}", groupId = "group1", containerFactory = "custKafkaListenerContainerFactory")
+    public void listenToCustomerTopic(
+    		@Header(name = KafkaHeaders.PARTITION_ID) int partitionId,
+    		@Header(name = KafkaHeaders.OFFSET) int offset,
+    		@Payload Customer customer, Acknowledgment acknowledgment) throws JsonProcessingException {
+    	System.out.println(partitionId);
+    	System.out.println(offset);
+    	System.out.println(customer);
+
+    //	acknowledgment.acknowledge();
       
     }
     

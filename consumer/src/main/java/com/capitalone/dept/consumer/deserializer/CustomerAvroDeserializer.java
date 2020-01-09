@@ -21,7 +21,7 @@ public class CustomerAvroDeserializer implements Deserializer<Customer>{
 			
 			AvroSchema avroSchema = new AvroSchema(schema);
 			AvroMapper avroMapper = new AvroMapper();
-		 customer =	avroMapper.reader(avroSchema).readValue(data);
+		 customer =	avroMapper.readerFor(Customer.class).with(avroSchema).readValue(data);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
