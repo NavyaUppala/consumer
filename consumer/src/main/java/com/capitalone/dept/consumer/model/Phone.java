@@ -44,4 +44,9 @@ public class Phone implements Serializable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "Phone [id=" + id + ", type=" + type + ", phoneNumber=" + phoneNumber + "]";
+	}
+
 }

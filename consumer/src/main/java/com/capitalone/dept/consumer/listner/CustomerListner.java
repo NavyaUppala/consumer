@@ -17,20 +17,23 @@ import org.springframework.stereotype.Component;
 import com.capitalone.dept.consumer.model.Customer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.avro.AvroMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroSchema;
 
 @Component
 public class CustomerListner {
 	
+	ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+	
     @KafkaListener(topics = "${kafka.topic.avro.customer}", groupId = "group1", containerFactory = "custKafkaListenerContainerFactory")
     public void listenToCustomerTopic(
-    		@Header(name = KafkaHeaders.PARTITION_ID) int partitionId,
+    		@Header(name = KafkaHeaders.RECEIVED_PARTITION_ID) int partitionId,
     		@Header(name = KafkaHeaders.OFFSET) int offset,
     		@Payload Customer customer, Acknowledgment acknowledgment) throws JsonProcessingException {
-    	System.out.println(partitionId);
-    	System.out.println(offset);
-    	System.out.println(customer);
+    	System.out.println("Partition Id " + partitionId);
+    	System.out.println("offset " + offset);
+    	System.out.println(mapper.writeValueAsString(customer));
 
     //	acknowledgment.acknowledge();
       
