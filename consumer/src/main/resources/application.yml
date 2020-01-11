@@ -1,5 +1,5 @@
 kafka:
-   bootstrap-servers: 54.92.253.135:9092   
+   bootstrap-servers:  54.152.71.186:9092
    topic:
       avro: 
         customer: customer-topic 

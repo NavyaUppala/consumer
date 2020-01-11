@@ -3,9 +3,6 @@ package com.capitalone.dept.consumer.listner;
 import java.io.IOException;
 
 import org.apache.avro.Schema;
-import org.apache.avro.generic.GenericRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.common.utils.Bytes;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
@@ -26,12 +23,13 @@ public class CustomerListner {
 	
 	ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 	
-    @KafkaListener(topics = "${kafka.topic.avro.customer}", groupId = "group1", containerFactory = "custKafkaListenerContainerFactory")
+    @KafkaListener(topics = "${kafka.topic.avro.customer}", groupId = "consumer1", containerFactory = "custKafkaListenerContainerFactory")
     public void listenToCustomerTopic(
     		@Header(name = KafkaHeaders.RECEIVED_PARTITION_ID) int partitionId,
     		@Header(name = KafkaHeaders.OFFSET) int offset,
     		@Payload Customer customer, 
     		Acknowledgment acknowledgment) throws JsonProcessingException {
+    	System.out.println("Consumer1");
     	System.out.println("Partition Id " + partitionId);
     	System.out.println("offset " + offset);
     	System.out.println(mapper.writeValueAsString(customer));
